@@ -8,7 +8,7 @@ LD=/usr/bin/gcc
 DSTDLIB=tango
 DFLAGS_DEBUG=-gc
 DFLAGS_RELEASE=-O -inline -release
-DFLAGS_BASE=-I/opt/dmd/include/c -I/opt/dmd/include/${DSTDLIB} -I/opt/dmd/include/tango/tango/core -I/opt/dmd/include/tango/tango/core/rt/compiler/dmd -I`pwd`/site -J.
+DFLAGS_BASE=-I/opt/dmd/include/c -I/opt/dmd/include/${DSTDLIB} -I/opt/dmd/include/tango/tango/core -I/opt/dmd/include/tango/tango/core/rt/compiler/dmd -I`pwd`/site -J. -op
 ifeq (${RELEASE},)
 DFLAGS=${DFLAGS_BASE} ${DFLAGS_DEBUG}
 else
