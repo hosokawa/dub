@@ -1,0 +1,3 @@
+#!/bin/sh
+echo -n 'OBJS=index.o ' > objs.mak
+echo `find site \( -name '*.d' -or -name '*.dt' \) -print | sed -e 's/\.d$/.o/;s/\.dt$/.o/'` >> objs.mak

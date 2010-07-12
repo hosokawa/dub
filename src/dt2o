@@ -1,0 +1,20 @@
+#!/bin/bash
+SRC="$1"
+DST="$2"
+shift; shift
+DT=$1; shift
+while [ -n "$1" ]; do
+	DT="$DT $1"
+	shift
+done
+MODULE=`echo $SRC | sed -e 's/\.dt//;s@/@\.@g;s@site\.@@'`
+DTEMP=`echo $SRC | sed -e 's/\.dt$/\.d/'`
+sed -n -e '/\+ template.src/,/template.src \+/p' site/dab/dtcompiler.d \
+  | grep -v 'template.src' \
+  | sed -e 's@%module%@'$MODULE'@g' \
+  | sed -e 's@%\.dt%@'$SRC'@' > $DTEMP
+echo $DT -c -of$DST $DTEMP
+$DT -c -of$DST $DTEMP
+EXIT=$?
+rm -f $DTEMP
+exit $EXIT
