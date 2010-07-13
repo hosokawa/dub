@@ -35,8 +35,8 @@ clean:
 	find . -type f \( -name '*.o' -or -name '*.so' -or -name '*.so.*' -or -name '*.di' -or -name '*.fcgi' \) -exec rm -f {} \;
 
 install: all
-	install -s -m755 index.fcgi ${HTDOCS}
 	mkdir -p ${HTDOCS}/conf
+	install -s -m755 index.fcgi ${HTDOCS}
 	sed -e 's@<htdocs>.*@<htdocs>'`pwd`/${HTDOCS}'</htdocs>@;s@<private>.*@<private>'`pwd`/${PRIVATE}'</private>@' conf/site.conf > ${HTDOCS}/conf/site.conf
 	chmod 644 ${HTDOCS}/conf/site.conf
 	install -m444 conf/.htaccess ${HTDOCS}/conf/.htaccess
